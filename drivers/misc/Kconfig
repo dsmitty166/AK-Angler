@@ -633,6 +633,12 @@ config WIFI_SAR
 	  Provides a interface to control wifi max TX power and notifies other
 	  kernel components when SAR cutback has to be applied.
 
+config SOUND_CONTROL
+	bool "WCD9339 Sound Control"
+	default n
+	help
+	  Sound Control for Mic Headphones and Speaker
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
