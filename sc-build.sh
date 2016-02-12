@@ -1,5 +1,5 @@
 #!/bin/bash
-rm .version
+
 # Bash Color
 green='\033[01;32m'
 red='\033[01;31m'
@@ -14,18 +14,17 @@ KERNEL="Image.gz"
 DTBIMAGE="dtb"
 DEFCONFIG="saber_defconfig"
 KERNEL_DIR="${HOME}/kernel/saber"
-ANYKERNEL_DIR="${HOME}/kernel/sC-Angler-AnyKernel2"
+ANYKERNEL_DIR="${HOME}/kernel/AK-Angler-AnyKernel2"
 TOOLCHAIN_DIR="${HOME}/toolchain"
 
 # Kernel Details
-BASE_AK_VER="fuckery"
-VER=".3.73"
+BASE_AK_VER="saberCore"
+VER=".fuckery.3.73"
 AK_VER="$BASE_AK_VER$VER"
-
 
 # Vars
 export LOCALVERSION=~`echo $AK_VER`
-export CROSS_COMPILE="${HOME}/toolchain/UBERTC-aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-"
+export CROSS_COMPILE="$TOOLCHAIN_DIR/UBERTC-aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-"
 export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_USER=f100cleveland
@@ -83,9 +82,14 @@ function make_zip {
 
 DATE_START=$(date +"%s")
 
-
 echo -e "${green}"
-echo "saberCore64 Kernel Creation Script:"
+echo "AK Kernel Creation Script:"
+echo "    _____                         "
+echo "   (, /  |              /)   ,    "
+echo "     /---| __   _   __ (/_     __ "
+echo "  ) /    |_/ (_(_(_/ (_/(___(_(_(_"
+echo " ( /                              "
+echo " _/                               "
 echo
 
 echo "---------------"
@@ -96,11 +100,9 @@ echo -e "${red}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}";
 
 echo -e "${green}"
 echo "-----------------"
-echo "Making sC64 Kernel:"
+echo "Making AK Kernel:"
 echo "-----------------"
 echo -e "${restore}"
-
-echo
 
 while read -p "Do you want to clean stuffs (y/n)? " cchoice
 do
@@ -124,14 +126,13 @@ done
 
 echo
 
-while read -p "Do you want to build?" dchoice
+while read -p "Do you want to build kernel (y/n)? " dchoice
 do
 case "$dchoice" in
-	y|Y )
+	y|Y)
 		make_kernel
 		make_dtb
 		make_modules
-		make_boot
 		make_zip
 		break
 		;;
@@ -145,7 +146,6 @@ case "$dchoice" in
 		;;
 esac
 done
-
 
 echo -e "${green}"
 echo "-------------------"
