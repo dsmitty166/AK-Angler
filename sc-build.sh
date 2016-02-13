@@ -19,7 +19,7 @@ TOOLCHAIN_DIR="${HOME}/toolchain"
 
 # Kernel Details
 BASE_AK_VER="saberCore"
-VER=".fuckery.3.73"
+VER=".fuckery.3.75"
 AK_VER="$BASE_AK_VER$VER"
 
 # Vars
@@ -83,13 +83,7 @@ function make_zip {
 DATE_START=$(date +"%s")
 
 echo -e "${green}"
-echo "AK Kernel Creation Script:"
-echo "    _____                         "
-echo "   (, /  |              /)   ,    "
-echo "     /---| __   _   __ (/_     __ "
-echo "  ) /    |_/ (_(_(_/ (_/(___(_(_(_"
-echo " ( /                              "
-echo " _/                               "
+echo "saberCore Fuckery Kernel Creation Script:"
 echo
 
 echo "---------------"
@@ -100,7 +94,7 @@ echo -e "${red}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}";
 
 echo -e "${green}"
 echo "-----------------"
-echo "Making AK Kernel:"
+echo "Making sC Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
