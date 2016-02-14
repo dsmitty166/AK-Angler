@@ -32,7 +32,7 @@ then
     THREAD="-j16";
 elif [ $NUMJOBS = "16" ];
     THREAD="-j18";
-else
+then
     THREAD=-j"$NUMJOBS";
 fi;
 
@@ -41,11 +41,11 @@ KERNEL="Image.gz"
 DTBIMAGE="dtb"
 DEFCONFIG="saber_defconfig"
 KERNEL_DIR=`pwd`
-ANYKERNEL_DIR="${HOME}/kernel/sC-Angler-AnyKernel2"
+ANYKERNEL_DIR="${HOME}/kernel/saber/saberCore/AK-AnyKernel2"
 
 # Kernel Details
 BASE_AK_VER="fuckery"
-VER=".3.75"
+VER=".4"
 AK_VER="$BASE_AK_VER$VER"
 
 # Vars

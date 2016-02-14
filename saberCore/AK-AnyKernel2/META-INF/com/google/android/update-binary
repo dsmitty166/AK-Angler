@@ -45,17 +45,6 @@ if [ ! -f /system/etc/thermal-engine.conf.bck ]; then
 fi
 cp -f /tmp/anykernel/tools/thermal-engine.conf /system/etc;
 
-ui_print("    ___             _                        ");
-ui_print("   / __)           | |                       ");
-ui_print("  | |__ _   _  ____| |  _ ____  ____ _   _   ");
-ui_print("  |  __) | | |/ ___) | / ) _  )/ ___) | | |  ");
-ui_print("  | |  | |_| ( (___| |< ( (/ /| |   | |_| |  ");
-ui_print("  |_|   \____|\____)_| \_)____)_|    \__  |  ");
-ui_print("                                    (____/   ");
-ui_print("_marshmallow fuckery goodness_");
-ui_print("");
-
-
 if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
   for i in 1 2 3 4 5; do
     testname="$(file_getprop /tmp/anykernel/anykernel.sh device.name$i)";
