@@ -1,5 +1,7 @@
 #!/bin/bash
-rm .version
+
+# Script edited by xanaxdroid
+
 # Bash Color
 green='\033[01;32m'
 red='\033[01;31m'
@@ -8,28 +10,58 @@ restore='\033[0m'
 
 clear
 
-# Resources
-THREAD="-j$(grep -c ^processor /proc/cpuinfo)"
+# Number of threads to use. Cores+2 
+NUMJOBS="$(cat /proc/cpuinfo | grep -c processor)";
+if [ $NUMJOBS = "4" ];
+then
+    THREAD="-j6";
+elif [ $NUMJOBS = "6" ];
+then
+    THREAD="-j8";
+elif [ $NUMJOBS = "8" ];
+then
+    THREAD="-j10";
+elif [ $NUMJOBS = "10" ];
+then
+    THREAD="-j12";
+elif [ $NUMJOBS = "12" ];
+then
+    THREAD="-j14";
+elif [ $NUMJOBS = "14" ];
+then
+    THREAD="-j16";
+elif [ $NUMJOBS = "16" ];
+    THREAD="-j18";
+else
+    THREAD=-j"$NUMJOBS";
+fi;
+
+# Other resources
 KERNEL="Image.gz"
 DTBIMAGE="dtb"
 DEFCONFIG="saber_defconfig"
-KERNEL_DIR="${HOME}/kernel/saber"
+KERNEL_DIR=`pwd`
 ANYKERNEL_DIR="${HOME}/kernel/sC-Angler-AnyKernel2"
-TOOLCHAIN_DIR="${HOME}/toolchain"
 
 # Kernel Details
 BASE_AK_VER="fuckery"
-VER=".3.73"
+VER=".3.75"
 AK_VER="$BASE_AK_VER$VER"
 
-
 # Vars
+export USE_CCACHE=1
 export LOCALVERSION=~`echo $AK_VER`
-export CROSS_COMPILE="${HOME}/toolchain/UBERTC-aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-"
 export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_USER=f100cleveland
 export KBUILD_BUILD_HOST=BuildBox
+CROSS_COMPILE="${HOME}/toolchain/UBERTC-aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-"
+
+if [ "$USE_CCACHE" = 1 ]; then
+   export CROSS_COMPILE="ccache $CROSS_COMPILE"
+else
+   export CROSS_COMPILE="$CROSS_COMPILE"
+fi
 
 # Paths
 REPACK_DIR="$ANYKERNEL_DIR"
@@ -83,7 +115,6 @@ function make_zip {
 
 DATE_START=$(date +"%s")
 
-
 echo -e "${green}"
 echo "saberCore64 Kernel Creation Script:"
 echo
@@ -99,8 +130,6 @@ echo "-----------------"
 echo "Making sC64 Kernel:"
 echo "-----------------"
 echo -e "${restore}"
-
-echo
 
 while read -p "Do you want to clean stuffs (y/n)? " cchoice
 do
@@ -124,14 +153,13 @@ done
 
 echo
 
-while read -p "Do you want to build?" dchoice
+while read -p "Do you want to build kernel (y/n)? " dchoice
 do
 case "$dchoice" in
-	y|Y )
+	y|Y)
 		make_kernel
 		make_dtb
 		make_modules
-		make_boot
 		make_zip
 		break
 		;;
@@ -145,7 +173,6 @@ case "$dchoice" in
 		;;
 esac
 done
-
 
 echo -e "${green}"
 echo "-------------------"
