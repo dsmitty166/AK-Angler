@@ -42,7 +42,7 @@ KERNEL="Image.gz"
 DTBIMAGE="dtb"
 DEFCONFIG="saber_defconfig"
 KERNEL_DIR=`pwd`
-ANYKERNEL_DIR="$KERNEL_DIR/benzoCore/AK-AnyKernel2"
+ANYKERNEL_DIR="$KERNEL_DIR/saberCore/AK-AnyKernel2"
 TOOLCHAIN_DIR="${HOME}/toolchain"
 
 # Kernel Details
