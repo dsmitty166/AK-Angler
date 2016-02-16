@@ -31,8 +31,9 @@ elif [ $NUMJOBS = "14" ];
 then
     THREAD="-j16";
 elif [ $NUMJOBS = "16" ];
-    THREAD="-j18";
 then
+    THREAD="-j18";
+else
     THREAD=-j"$NUMJOBS";
 fi;
 
@@ -41,12 +42,13 @@ KERNEL="Image.gz"
 DTBIMAGE="dtb"
 DEFCONFIG="saber_defconfig"
 KERNEL_DIR=`pwd`
-ANYKERNEL_DIR="${HOME}/kernel/saber/saberCore/AK-AnyKernel2"
+ANYKERNEL_DIR="$KERNEL_DIR/saberCore/AK-AnyKernel2"
+TOOLCHAIN_DIR="${HOME}/toolchain"
 
 # Kernel Details
-BASE_AK_VER="fuckery"
-VER=".4"
-AK_VER="$BASE_AK_VER$VER"
+AK="fuckery"
+VER=".3.8"
+AK_VER=$AK-$VER
 
 # Vars
 export USE_CCACHE=1
@@ -55,7 +57,7 @@ export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_USER=f100cleveland
 export KBUILD_BUILD_HOST=BuildBox
-CROSS_COMPILE="${HOME}/toolchain/UBERTC-aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-"
+export CROSS_COMPILE="$TOOLCHAIN_DIR/UBERTC-aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-"
 
 if [ "$USE_CCACHE" = 1 ]; then
    export CROSS_COMPILE="ccache $CROSS_COMPILE"
@@ -67,7 +69,7 @@ fi
 REPACK_DIR="$ANYKERNEL_DIR"
 PATCH_DIR="$ANYKERNEL_DIR/patch"
 MODULES_DIR="$ANYKERNEL_DIR/modules"
-ZIP_MOVE="${HOME}/AK-releases"
+ZIP_MOVE="$KERNEL_DIR/saber-zip"
 ZIMAGE_DIR="$KERNEL_DIR/arch/arm64/boot"
 
 # Functions
@@ -102,7 +104,7 @@ function make_modules {
 }
 
 function make_dtb {
-		$REPACK_DIR/tools/dtbToolCM -v2 -o $REPACK_DIR/$DTBIMAGE -s 2048 -p scripts/dtc/ arch/arm64/boot/dts/
+		$REPACK_DIR/tools/dtbToolCM -v2 -o $REPACK_DIR/$DTBIMAGE -s 2048 -p AKripts/dtc/ arch/arm64/boot/dts/
 }
 
 function make_zip {
@@ -127,7 +129,7 @@ echo -e "${red}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}";
 
 echo -e "${green}"
 echo "-----------------"
-echo "Making sC64 Kernel:"
+echo "Making AK64 Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 

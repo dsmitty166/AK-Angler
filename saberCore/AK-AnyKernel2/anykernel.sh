@@ -3,7 +3,7 @@
 
 ## AnyKernel setup
 # EDIFY properties
-kernel.string=benzoCore64 @ xanaxdroid
+kernel.string=saberCore
 do.devicecheck=1
 do.initd=1
 do.modules=1
@@ -215,8 +215,8 @@ dump_boot;
 # initialize frequency limits
 backup_file init.angler.rc;
 
-insert_line init.angler.rc "import init.benzo.rc" after "import init.angler.sensorhub.rc" "import init.benzo.rc";
-insert_line init.angler.rc "import init.benzo.rc" after "import init.angler.sensorhub.rc" "";
+insert_line init.angler.rc "import init.saber.rc" after "import init.angler.sensorhub.rc" "import init.saber.rc";
+insert_line init.angler.rc "import init.saber.rc" after "import init.angler.sensorhub.rc" "";
 
 # end ramdisk changes
 
