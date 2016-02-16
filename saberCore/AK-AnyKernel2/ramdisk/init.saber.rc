@@ -47,42 +47,26 @@ on property:dev.bootcomplete=1
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor elementalx
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 302400
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1958400
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2054400
     write /sys/devices/system/cpu/cpu5/online 1
     write /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor elementalx
     write /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq 302400
-    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq 1958400
+    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq 2054400
     write /sys/devices/system/cpu/cpu6/online 1
     write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor elementalx
     write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq 302400
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq 1958400
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq 2054400
     write /sys/devices/system/cpu/cpu7/online 1
     write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor elementalx
     write /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq 302400
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq 1958400
+    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq 2054400
 
     # Wake Gestures
     chown system system /sys/android_touch/doubletap2wake
     chmod 0644 /sys/android_touch/doubletap2wake
-    chown system system /sys/android_touch/sweep2wake
-    chmod 0644 /sys/android_touch/sweep2wake
-    chown system system /sys/android_touch/sweep2sleep
-    chmod 0644 /sys/android_touch/sweep2sleep
-    chown system system /sys/android_touch/wake_gestures
-    chmod 0644 /sys/android_touch/wake_gestures
     chown system system /sys/android_touch/vib_strength
     chmod 0644 /sys/android_touch/vib_strength
-    write /sys/android_touch/vib_strength 40
-
-    # Adreno Idler
-    chown system system /sys/module/adreno_idler/parameters/adreno_idler_active
-    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_active
-    chown system system /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
-    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
-    chown system system /sys/module/adreno_idler/parameters/adreno_idler_idewait
-    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_idewait
-    chown system system /sys/module/adreno_idler/parameters/adreno_idler_ideworkload
-    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_ideworkload
+    write /sys/android_touch/vib_strength 60
 
 # adb over network
 on property:service.adb.tcp.port=5555
