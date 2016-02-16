@@ -46,13 +46,13 @@ ANYKERNEL_DIR="$KERNEL_DIR/saberCore/AK-AnyKernel2"
 TOOLCHAIN_DIR="${HOME}/toolchain"
 
 # Kernel Details
-sC="fuckery"
+AK="fuckery"
 VER=".3.8"
-sC_VER=$sC-$VER
+AK_VER=$AK-$VER
 
 # Vars
 export USE_CCACHE=1
-export LOCALVERSION=~`echo $sC_VER`
+export LOCALVERSION=~`echo $AK_VER`
 export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_USER=f100cleveland
@@ -104,7 +104,7 @@ function make_modules {
 }
 
 function make_dtb {
-		$REPACK_DIR/tools/dtbToolCM -v2 -o $REPACK_DIR/$DTBIMAGE -s 2048 -p scripts/dtc/ arch/arm64/boot/dts/
+		$REPACK_DIR/tools/dtbToolCM -v2 -o $REPACK_DIR/$DTBIMAGE -s 2048 -p AKripts/dtc/ arch/arm64/boot/dts/
 }
 
 function make_zip {
@@ -129,7 +129,7 @@ echo -e "${red}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}";
 
 echo -e "${green}"
 echo "-----------------"
-echo "Making sC64 Kernel:"
+echo "Making AK64 Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
